@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { StyleSheet } from 'react-native'
 import Swiper from 'react-native-swiper'
-import SliderContent from './SliderContent'
+import SliderContent from '../../../Components/Auth/Slider/SliderContent'
 import NavigationService from '../../../Services/Navigation'
 
 

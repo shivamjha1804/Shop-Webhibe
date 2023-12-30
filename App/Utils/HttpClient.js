@@ -3,7 +3,7 @@ import { MAIN_BASE_URL } from './EnvVariables';
 import RNFetchBlob from 'rn-fetch-blob';
 import RNFS from 'react-native-fs'
 
-const BASE_URL = `${MAIN_BASE_URL}/v1/api`;
+const BASE_URL = `http://13.127.222.180:4000/`;
 
 
 async function getToken() {

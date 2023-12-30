@@ -1,15 +1,18 @@
 import React from 'react'
 import { Image, Text, ScrollView, StyleSheet, View, TouchableOpacity, StatusBar } from 'react-native'
 import NavigationService from '../../../Services/Navigation'
+import { useDispatch } from 'react-redux';
+import { logout } from '../../../Redux/reducer/User';
 
 
 const Header = () => {
+    const dispatch = useDispatch(); 
     return (
         <View style={{ backgroundColor: 'white' }}>
-            <StatusBar backgroundColor={'white'}/>
+            <StatusBar backgroundColor={'white'} />
             <View style={styles.InnerContainer}>
                 <TouchableOpacity style={styles.Row1} onPress={() => {
-                    NavigationService.openDrawer()
+                    dispatch(logout())
                 }}>
                     <Image style={styles.Hamburger} source={require('../../../Assets/Image/CommonComponent/Header/menu.png')} />
                 </TouchableOpacity>

@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, View } from 'react-native'
 import Header from '../../../Components/CommonComponent/Header/Header'
 import Search from '../../../Components/CommonComponent/Search/Search'
 import Filter from '../../../Components/CommonComponent/Filter/Filter'
-import ProductName from '../../../Components/Auth/TrendingProduct/ProductName/ProductName'
+import ProductName from '../../../Components/App/TrendingProduct/ProductName/ProductName'
 
 const TrendingProduct = () => {
   return (

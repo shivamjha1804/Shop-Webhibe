@@ -4,17 +4,17 @@ import { ScrollView } from 'react-native'
 import Header from '../../../Components/CommonComponent/Header/Header';
 import Search from '../../../Components/CommonComponent/Search/Search';
 import Filter from '../../../Components/CommonComponent/Filter/Filter';
-import Category from '../../../Components/Auth/Dashboard/Category/Category';
-import Discount from '../../../Components/Auth/Dashboard/Discount/Discount';
-import DealOfTheDay from '../../../Components/Auth/Dashboard/DealOfTheDay/DealOfTheDay';
-import Product from '../../../Components/Auth/Dashboard/Product/Product';
-import SpecialOffer from '../../../Components/Auth/Dashboard/SpecialOffer/SpecialOffer';
-import Offer from '../../../Components/Auth/Dashboard/Offer/Offer';
-import ListOfProduct from '../../../Components/Auth/Dashboard/ListOfProduct/ListOfProduct';
-import SummerSale from '../../../Components/Auth/Dashboard/SummerSale/SummerSale';
-import Sponsered from '../../../Components/Auth/Dashboard/Sponsered/Sponsered';
+import Category from '../../../Components/App/Dashboard/Category/Category';
+import Discount from '../../../Components/App/Dashboard/Discount/Discount';
+import DealOfTheDay from '../../../Components/App/Dashboard/DealOfTheDay/DealOfTheDay';
+import Product from '../../../Components/App/Dashboard/Product/Product';
+import SpecialOffer from '../../../Components/App/Dashboard/SpecialOffer/SpecialOffer';
+import Offer from '../../../Components/App/Dashboard/Offer/Offer';
+import ListOfProduct from '../../../Components/App/Dashboard/ListOfProduct/ListOfProduct';
+import SummerSale from '../../../Components/App/Dashboard/SummerSale/SummerSale';
+import Sponsered from '../../../Components/App/Dashboard/Sponsered/Sponsered';
 
-const Dashboard = () => {
+const Dashboard = () => { 
   return (
     <ScrollView 
         style={{

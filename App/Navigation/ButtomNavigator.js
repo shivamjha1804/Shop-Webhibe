@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5'
 import Dashboard from '../Screens/Home/Dashboard/Dashboard';
 import TrendingProduct from '../Screens/Home/TrendingProduct/TrendingProduct';
 import Shop from '../Screens/Home/Shop/Shop';
-import Search from '../Screens/Search/Search';
+import Search from '../Screens/Home/Search/Search';
 import Setting from '../Screens/Home/Setting/Setting';
 
 const Tab = createBottomTabNavigator();
