@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, ScrollView, StyleSheet } from 'react-native'
 import SubCategory from './SubCategory'
+import { category } from '../../../../Redux/Thunk/Product'
+import { useDispatch, useSelector } from 'react-redux'
+
 
 const Detail = [
     {
@@ -49,16 +52,27 @@ const Detail = [
     },
 ]
 
+
+
+
 const Category = () => {
+    const dispatch = useDispatch();
+    const {categoryData, loading } = useSelector(state => state.Product);
+    // const[product, setProduct] = useState([])
+
+    useEffect(() => {
+        dispatch(category());
+    }, [dispatch]);
+
     return (
         <View style={{ backgroundColor: "white", }}>
             <ScrollView horizontal contentContainerStyle={styles.contentContainer}>
                 {
-                    Detail.map((item, index)=>{
-                        return (
-                            <SubCategory item={item} key={index}/>
-                        )
-                    })
+                    // categoryData.map((item, index)=>{
+                    //     return (
+                    //         <SubCategory item={item} key={index}/>
+                    //     )
+                    // })
                 }
             </ScrollView>
         </View>

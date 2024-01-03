@@ -38,7 +38,7 @@ const Header = () => {
 const styles = StyleSheet.create({
     InnerContainer: {
         flexDirection: 'row',
-        marginTop: 35,
+        marginTop: 10,
         justifyContent: 'space-between',
     },
 
