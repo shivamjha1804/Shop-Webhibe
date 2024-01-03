@@ -14,8 +14,13 @@ async function setToken(data) {
     return await Storage.set('token', data);
 }
 
+async function signUp(data){
+    let endpoint = 'auth/register';
+    return HttpClient.post(endpoint, data);
+}
+
 async function login(data) {
-    let endpoint = 'endpoint';
+    let endpoint = 'auth/login';
     return HttpClient.post(endpoint, data);
 }
 
@@ -24,6 +29,7 @@ const AuthService = {
     setAccount,
     setToken,
     login,
+    signUp
 }
 
 export default AuthService;

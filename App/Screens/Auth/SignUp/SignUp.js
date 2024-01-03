@@ -1,8 +1,41 @@
-import React from 'react'
-import { StatusBar, TouchableOpacity, StyleSheet, ScrollView, View, Text, TextInput, Image } from 'react-native'
+import React, { useState } from 'react'
+import { StatusBar, TouchableOpacity, StyleSheet, ScrollView, View, Text, TextInput, Image, Alert } from 'react-native'
 import NavigationService from '../../../Services/Navigation'
+import { useDispatch } from 'react-redux'
+import { Icon } from 'react-native-basic-elements'
+import { signUp } from '../../../Redux/Thunk/Auth'
 
 const SignUp = () => {
+    const dispatch = useDispatch();
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [contact, setContact] = useState(0);
+    const [pin, setPin] = useState(0);
+
+    // Redux Login Function
+    const signUpClick = () => {
+
+        if (password !== confirmPassword) {
+            alert("Invalid Password")
+            return;
+        }
+
+        let signUpData = {
+            name:name,
+            email: email,
+            password: password,
+            contact: contact,
+            postalcode: pin,
+            userType: "User"
+        }
+
+        dispatch(signUp(signUpData))
+
+    };
+
+
     return (
         <ScrollView>
             <View>
@@ -16,13 +49,54 @@ const SignUp = () => {
                         <View>
                             <Image style={styles.Image} source={require('../../../Assets/Image/Auth/SignUp/user.png')} />
                         </View>
-                        <TextInput placeholder='username and email' placeholderTextColor={'#676767'} />
+                        <TextInput
+                            placeholder='Enter your name'
+                            placeholderTextColor={'#676767'}
+                            value={name}
+                            style={{
+                                color:'black'
+                            }}
+                            onChangeText={(Text) => {
+                                setName(Text);
+                            }}
+                        />
+                    </View>
+
+                    <View style={styles.Input}>
+                        <View>
+                           <Icon
+                                name='email'
+                                type='ZocialIcon'
+                                size={25}
+                           />
+                        </View>
+                        <TextInput
+                            placeholder='username and email'
+                            placeholderTextColor={'#676767'}
+                            value={email}
+                            style={{
+                                color:'black'
+                            }}
+                            onChangeText={(Text) => {
+                                setEmail(Text);
+                            }}
+                        />
                     </View>
 
                     <View style={{ ...styles.Input, justifyContent: 'space-between' }}>
                         <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                             <Image style={styles.Image} source={require('../../../Assets/Image/Auth/SignUp/padlock.png')} />
-                            <TextInput placeholder='Password' placeholderTextColor={'#676767'} />
+                            <TextInput
+                                placeholder='Password'
+                                placeholderTextColor={'#676767'}
+                                value={password}
+                                style={{
+                                    color:'black'
+                                }}
+                                onChangeText={(Text) => {
+                                    setPassword(Text);
+                                }}
+                            />
                         </View>
                         <View style={{ marginLeft: 25, marginRight: 1, }}>
                             <Image style={styles.Image} source={require('../../../Assets/Image/Auth/SignUp/witness.png')} />
@@ -32,10 +106,62 @@ const SignUp = () => {
                     <View style={{ ...styles.Input, justifyContent: 'space-between' }}>
                         <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                             <Image style={styles.Image} source={require('../../../Assets/Image/Auth/SignUp/padlock.png')} />
-                            <TextInput placeholder='Confirm Password' placeholderTextColor={'#676767'} />
+                            <TextInput
+                                placeholder='Confirm Password'
+                                placeholderTextColor={'#676767'}
+                                value={confirmPassword}
+                                style={{
+                                    color:'black'
+                                }}
+                                onChangeText={(Text) => {
+                                    setConfirmPassword(Text);
+                                }}
+                            />
                         </View>
                         <View style={{ marginLeft: 25, marginRight: 1, }}>
                             <Image style={styles.Image} source={require('../../../Assets/Image/Auth/SignUp/witness.png')} />
+                        </View>
+                    </View>
+
+                    <View style={{ ...styles.Input, justifyContent: 'space-between' }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                            <Icon
+                                name='call'
+                                type='Ionicons'
+                                size={25}
+                            />
+                            <TextInput
+                                placeholder='Contact'
+                                placeholderTextColor={'#676767'}
+                                value={contact}
+                                style={{
+                                    color:'black'
+                                }}
+                                onChangeText={(Text) => {
+                                    setContact(Text);
+                                }}
+                            />
+                        </View>
+                    </View>
+
+                    <View style={{ ...styles.Input, justifyContent: 'space-between' }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                            <Icon
+                                name='location-pin'
+                                type='Entypo'
+                                size={25}
+                            />
+                            <TextInput
+                                placeholder='Pin Code'
+                                placeholderTextColor={'#676767'}
+                                value={pin}
+                                style={{
+                                    color:'black'
+                                }}
+                                onChangeText={(Text) => {
+                                    setPin(Text);
+                                }}
+                            />
                         </View>
                     </View>
 
@@ -43,7 +169,12 @@ const SignUp = () => {
                         By clicking the <Text style={{ color: '#FF4B26' }}> Register </Text> button, you agree to the public offer
                     </Text>
 
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={() => {
+                            signUpClick();
+                        }}
+                    >
                         <Text style={styles.buttonText}>
                             Create Account
                         </Text>
@@ -70,8 +201,8 @@ const SignUp = () => {
 
                     <View
                         style={{
-                            flexDirection:'row',
-                            columnGap:5
+                            flexDirection: 'row',
+                            columnGap: 5
                         }}
                     >
 

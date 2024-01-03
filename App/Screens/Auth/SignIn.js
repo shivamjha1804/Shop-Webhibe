@@ -1,13 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { AppButton, Container} from 'react-native-basic-elements'
 import { moderateScale } from '../../Constants/PixelRatio'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../../Redux/reducer/User'
 import { StatusBar, TouchableOpacity, StyleSheet, ScrollView, View, Text, TextInput, Image } from 'react-native'
 import NavigationService from '../../Services/Navigation'
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import AuthService from '../../Services/Auth'
+import { login } from '../../Redux/Thunk/Auth'
+
+
+
+
 
 const SignIn = () => {
     const dispatch = useDispatch();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("")
+
+
+    // Redux Login Function
+    const loginClick = () => {
+        let loginData = {
+            email:email,
+            password: password,
+            userType: "User"
+        }
+        dispatch(login(loginData))
+    };
+
     return (
         <Container>
             <ScrollView>
@@ -22,12 +43,32 @@ const SignIn = () => {
                             <View>
                                 <Image style={styles.Image} source={require('../../Assets/Image/Auth/SignIn/user.png')} />
                             </View>
-                            <TextInput placeholder=' Username or email' placeholderTextColor={'#676767'} />
+                            <TextInput 
+                                value={email}
+                                placeholder=' Username or email' 
+                                placeholderTextColor={'#676767'} 
+                                style={{
+                                    color:'black'
+                                }}
+                                onChangeText={(val) => {
+                                    setEmail(val)
+                                }}
+                            />
                         </View>
                         <View style={{ ...styles.Input, justifyContent: 'space-between' }}>
                             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                                 <Image style={styles.Image} source={require('../../Assets/Image/Auth/SignIn/padlock.png')} />
-                                <TextInput placeholder='Password' placeholderTextColor={'#676767'} />
+                                <TextInput 
+                                    value={password}
+                                    placeholder='Password' 
+                                    placeholderTextColor={'#676767'} 
+                                    style={{
+                                        color:'black'
+                                    }}
+                                    onChangeText={(val) => {
+                                        setPassword(val)
+                                    }}
+                                />
                             </View>
                             <View style={{ marginLeft: 25, marginRight: 1, }}>
                                 <Image style={styles.Image} source={require('../../Assets/Image/Auth/SignIn/witness.png')} />
@@ -38,8 +79,10 @@ const SignIn = () => {
                         }}>
                             Forget Password
                         </Text>
-                        <TouchableOpacity style={styles.button} onPress={() => {
-                                dispatch(setUser({}))
+                        <TouchableOpacity 
+                            style={styles.button} 
+                            onPress={() => {
+                                loginClick()
                             }}
                         >
                             <Text style={styles.buttonText}>

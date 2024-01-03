@@ -1,9 +1,9 @@
-// import Storage from '@Utils/Storage'
+import Storage from './Storage'
 import { MAIN_BASE_URL } from './EnvVariables';
 import RNFetchBlob from 'rn-fetch-blob';
 import RNFS from 'react-native-fs'
 
-const BASE_URL = `http://13.127.222.180:4000/`;
+const BASE_URL = `http://13.127.222.180:4000/api/v1/`;
 
 
 async function getToken() {
