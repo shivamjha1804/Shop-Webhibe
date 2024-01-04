@@ -16,7 +16,7 @@ const App = () => {
   const dispatch = useDispatch();
   const colors = useTheme();
 
-  const {loginStatus} = useSelector(state => state.user);
+ const {loginStatus} = useSelector(state => state.user);
 // console.log("data",data);
 
   const [isLoading, setIsLoading] = useState(true);

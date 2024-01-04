@@ -2,13 +2,16 @@ import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/
 import reducer from "../reducer";
 import { persistReducer, persistStore } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import User from '../reducer/User';
 
 // const initialState = {
 //   user: {},
 //   isLoggedIn: false,
 // } 
 
-
+// const rootReducer = combineReducers({
+//   user: User
+// })
 
 const persistConfig = {
   key: 'root',
