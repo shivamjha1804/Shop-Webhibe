@@ -57,9 +57,9 @@ const Detail = [
 
 const Category = () => {
     const dispatch = useDispatch();
-    // const {categoryData, loading} = useSelector(state => state.Product);
+    const {categoryData} = useSelector(state => state.Product);
     // const[product, setProduct] = useState([])
-    // console.log("category : ", categoryData);
+    console.log("category : ", categoryData);
     useEffect(() => {
         dispatch(category());
     }, [dispatch]);
@@ -68,11 +68,15 @@ const Category = () => {
         <View style={{ backgroundColor: "white", }}>
             <ScrollView horizontal contentContainerStyle={styles.contentContainer}>
                 {
-                    // categoryData.map((item, index)=>{
-                    //     return (
-                    //         <SubCategory item={item} key={index}/>
-                    //     )
-                    // })
+                    categoryData.map((item, index)=>{
+                        return (
+                            <SubCategory 
+                                item={item} 
+                                key={index}
+                                
+                            />
+                        )
+                    })
                 }
             </ScrollView>
         </View>

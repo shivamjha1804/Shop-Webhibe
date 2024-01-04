@@ -1,14 +1,22 @@
 import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import NavigationService from '../../../../Services/Navigation'
 
-const SubCategory = ({item}) => {
+const SubCategory = ({item, props}) => {
   return (
-    <View style={styles.Conatiner}>
-        <Image source={item.Image}/>
+    <TouchableOpacity 
+        style={styles.Conatiner}
+        onPress={() => {
+            NavigationService.navigate('SubCategory', {
+                categoryId:item._id
+            })
+        }}
+    >
+        <Image source={require('../../../../Assets/Image/App/Dashboard/Category/subComponent1.png')}/>
         <Text style={styles.Text}>
-            {item.Label}
+            {item.category_name}
         </Text>
-    </View>
+    </TouchableOpacity>
   )
 }
 

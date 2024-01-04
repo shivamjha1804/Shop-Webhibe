@@ -7,6 +7,9 @@ import Profile from '../Screens/Home/Profile/Profile';
 import Cart from '../Screens/Home/Cart/Cart';
 import Buy from '../Screens/Home/Buy/Buy';
 import Payment from '../Screens/Home/Payment/Payment';
+import SubCategory from '../Screens/Home/SubCategory/SubCategory';
+import ProductList from '../Screens/Home/ProductList/ProductList';
+import Product from '../Screens/Home/Product/Product';
 
 
 const Stack = createStackNavigator();
@@ -43,6 +46,21 @@ const AppStack = () => {
       <Stack.Screen 
         name="Payment" 
         component={Payment} 
+        />
+
+      <Stack.Screen 
+        name="SubCategory" 
+        component={SubCategory} 
+        />
+
+      <Stack.Screen 
+        name="ProductList" 
+        component={ProductList} 
+        />
+
+      <Stack.Screen 
+        name="Product" 
+        component={Product} 
         />
     </Stack.Navigator>
   );

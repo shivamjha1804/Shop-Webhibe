@@ -31,7 +31,7 @@ const Header2 = (props) => {
 
 const styles = StyleSheet.create({
     Container: {
-        marginTop: 35,
+        marginTop: 10,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'
