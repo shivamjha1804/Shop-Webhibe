@@ -8,7 +8,7 @@ export const category = createAsyncThunk('product/fetch/getCategories', async() 
 
 export const subCategory = createAsyncThunk('product/fetch/getSubCategories', async(data) => {
     const response = await ProductService.subCategory({category_id:data});
-    console.log("response:", response);
+    // console.log("response:", response);
     return response.data;
 })
 
@@ -17,5 +17,24 @@ export const productList = createAsyncThunk('product/fetch/getProducts', async(d
         category_id:data.categoryId,
         subCategory_id:data.subCategoryId
     });
+    return response.data;
+})
+
+export const addCart = createAsyncThunk('cart/cartItems', async(data) => {
+    const response = await ProductService.addCart(data)
+    // console.log("response:",response);
+    return response.data;
+})
+
+export const buy = createAsyncThunk('cart/checkout', async (data) => {
+    const response = await ProductService.buy(data)
+    console.log("Response: ", response);
+    return response.data;
+})
+
+export const remove = createAsyncThunk('cart/removeFromCart', async (data) => {
+    console.log(remove(data))
+    const response = await ProductService.remove(data)
+    console.log("Response: ", response);
     return response.data;
 })

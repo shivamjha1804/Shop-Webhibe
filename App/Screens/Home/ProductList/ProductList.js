@@ -40,11 +40,11 @@ const Data = [
 
 const ProductList = ({route}) => {
     const {categoryId, subCategoryId} = route.params;
-    console.log(categoryId);
+    // console.log(categoryId);
     const dispatch = useDispatch();
-    const { categoryData } = useSelector(state => state.Product);
+    const { productListData } = useSelector(state => state.Product);
 
-    console.log("category : ", categoryData);
+    // console.log("category : ", productListData);
     useEffect(() => {
         dispatch(productList({
             categoryId,
@@ -63,7 +63,7 @@ const ProductList = ({route}) => {
             <Header />
             <Search />
             <FlatList
-                data={categoryData}
+                data={productListData}
                 renderItem={({item, index}) => {
                     return (
                         <Card

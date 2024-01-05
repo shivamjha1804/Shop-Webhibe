@@ -1,93 +1,129 @@
 import React from 'react'
-import { Image, Text, View } from 'react-native'
-import Star from '../../../CommonComponent/Star/Star'
+import { Image, Text, TouchableOpacity, View } from 'react-native'
+// import { useDispatch } from 'react-redux'
+// import { remove } from '../../../../Redux/Thunk/Product';
+import ProductService from '../../../../Services/Product';
 
-const SubCard = ({ item }) => {
+const SubCard = ({ item, ...props }) => {
+    // const dispatch = useDispatch();
+    const id = item._id;
+    console.log("id : ", id);
+
+    const removeItem = (data) => {
+        ProductService.remove()
+            .then(res => {
+                console.log("res", res);
+            })
+            .catch(err => {
+                console.log("err", err);
+            })
+    }
     return (
-        <View style={{ borderWidth: 0.3, borderRadius: 10, marginBottom: 10, borderColor: '#BBBBBB', padding: 12 }}>
-            <View style={{ flexDirection: 'row', columnGap: 10 }}>
-                <View>
-                    <Image style={{ width: 138, borderRadius: 10 }} source={item.Image} />
-                </View>
-                <View style={{ rowGap: 5 }}>
-                    <View>
-                        <Text style={{ color: 'black', fontWeight: '600', fontSize: 17 }}>
-                            {item.Title}
-                        </Text>
-                    </View>
-                    <View style={{ flexDirection: 'row', columnGap: 5 }}>
-                        <View>
-                            <Text style={{ color: 'black' }}>
-                                Variations :
-                            </Text>
-                        </View>
-                        <View style={{ borderWidth: 0.5, paddingHorizontal: 5 }}>
-                            <Text style={{ color: 'black' }}>
-                                {item.Variation.Black}
-                            </Text>
-                        </View>
-                        <View style={{ borderWidth: 0.5, paddingHorizontal: 5 }}>
-                            <Text style={{ color: 'black' }}>
-                                {item.Variation.Red}
-                            </Text>
-                        </View>
-                    </View>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', columnGap: 5 }}>
-                        <View>
-                            <Text style={{ color: 'black', fontWeight: '500' }}>
-                                {item.Rating}
-                            </Text>
-                        </View>
-                        <View style={{ flexDirection: 'row', }}>
-                            <Star
-                                ActiveStarType='Entypo'
-                                ActiveStarColor="#EDB310"
-                                ActiveStarName="star"
-                                DeactivateStarType="Entypo"
-                                starSize={18}
-                                DeactivateStarName="star"
-                                DeactivateStarColor='#BBBBBB'
-                                // containerStyle={{ flexDirection: 'row', marginLeft: 8 }}
-                                defaultStar={item.Rating}
+        <View
+            style={{
+                backgroundColor: 'white',
+                padding: 5,
+                marginBottom: 10,
+                borderRadius: 15
+            }}
+        >
+            <TouchableOpacity
+                style={{
+                    padding: 10,
+                    flexDirection: 'row',
+                    marginVertical: 10,
+                    borderRadius: 15,
+                    elevation: 3,
+                    backgroundColor: '#fff',
+                    columnGap: 10,
+                }}
 
-                            />
-                        </View>
-                    </View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                        <View>
-                            <Text style={{ color: 'black', fontWeight: '700', fontSize: 16, top: 10, left: 10 }}>
-                                {item.Price}
-                            </Text>
-                        </View>
-                        <View>
-                            <View>
-                                <Text style={{ color: '#EB3030', fontSize: 10, fontWeight: '600' }}>
-                                    upto {item.Discount} off
-                                </Text>
-                            </View>
-                            <View>
-                                <Text style={{ color: '#A7A7A7', textDecorationLine: 'line-through' }}>
-                                    {item.CrossedPrice}
-                                </Text>
-                            </View>
-                        </View>
-                    </View>
-                </View>
-            </View>
-            <View style={{ marginVertical: 30, borderWidth: 0.4, marginHorizontal: 15, borderColor: '#C4C4C4' }}></View>
-
-            <View style={{ flexDirection: 'row', paddingBottom: 15, justifyContent: 'space-between' }}>
+                onPress={() => {
+                    if (props.onPress) {
+                        props.onPress()
+                    }
+                }}
+            >
                 <View>
-                    <Text style={{ color: 'black' }}>
-                        Total Order (1)   :
+                    <Image
+                        style={{
+                            borderRadius: 10,
+                            height: 100,
+                            width: 100
+                        }}
+                        source={{ uri: item?.product_details?.[0]?.product_image?.[0] }}
+                    />
+                </View>
+                <View
+                    style={{
+                        rowGap: 2,
+                        paddingTop: 20
+                    }}
+                >
+                    <Text
+                        style={{
+                            color: "#000",
+                            paddingRight: 0,
+                            fontSize: 15,
+                            fontWeight: '600'
+                        }}
+                    >
+                        {item?.product_details?.[0]?.product_name}
+                    </Text>
+                    <Text
+                        style={{
+                            color: '#F83758',
+                            fontSize: 16,
+                            fontWeight: '600',
+                        }}
+                    >
+                        {'\u20B9'}{item.product_details?.[0]?.product_costprice}
+                    </Text>
+                    <Text
+                        style={{
+                            color: '#000',
+                            fontSize: 13,
+                            fontWeight: '600',
+                            textDecorationLine: 'line-through'
+                        }}
+                    >
+                        {'\u20B9'}{item.product_details?.[0]?.product_sellingprice}
+                    </Text>
+                    <Text
+                        style={{
+                            color: '#000',
+                            fontSize: 13,
+                            fontWeight: '600',
+                        }}
+                    >
+                        Quantity: {item.quantity}
                     </Text>
                 </View>
-                <View>
-                    <Text style={{ color: 'black' }}>
-                        $ 34.00
-                    </Text>
-                </View>
-            </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={{
+                    backgroundColor: 'red',
+                    alignSelf: 'center',
+                    paddingHorizontal: 15,
+                    paddingVertical: 10,
+                    borderRadius: 10,
+                    elevation: 3,
+                }}
+
+                onPress={() => {
+                    removeItem(id)
+                }}
+            >
+                <Text
+                    style={{
+                        color: "black",
+                        fontSize: 15,
+                        fontWeight: '800'
+                    }}
+                >
+                    Remove
+                </Text>
+            </TouchableOpacity>
         </View>
     )
 }

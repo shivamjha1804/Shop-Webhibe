@@ -4,5 +4,6 @@ import Product from "./Product";
 
 export default combineReducers({
    user: User,
-   Product: Product
+   Product: Product,
+   
 })

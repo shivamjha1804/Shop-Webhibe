@@ -34,11 +34,11 @@ const Data = [
 
 const SubCategory = ({route}) => {
     const {categoryId} = route.params;
-    console.log(categoryId);
+    // console.log(categoryId);
     const dispatch = useDispatch();
-    const { categoryData } = useSelector(state => state.Product);
+    const { subCategoryData } = useSelector(state => state.Product);
 
-    console.log("category : ", categoryData);
+    // console.log("category : ", subCategoryData);
     useEffect(() => {
         dispatch(subCategory(categoryId));
     }, [dispatch]);
@@ -58,7 +58,7 @@ const SubCategory = ({route}) => {
                 style={
                     styles.contentContainer
                 }
-                data={categoryData}
+                data={subCategoryData}
                 numColumns={2}
                 renderItem={({ item, index }) => {
                     return (

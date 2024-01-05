@@ -59,7 +59,7 @@ const Category = () => {
     const dispatch = useDispatch();
     const {categoryData} = useSelector(state => state.Product);
     // const[product, setProduct] = useState([])
-    console.log("category : ", categoryData);
+    // console.log("category : ", categoryData);
     useEffect(() => {
         dispatch(category());
     }, [dispatch]);

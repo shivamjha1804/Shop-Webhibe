@@ -19,11 +19,28 @@ async function productList(data){
     return HttpClient.post(endpoint, data);
 }
 
+async function addCart(data){
+    let endpoint = 'cart/cartItems';
+    return HttpClient.get(endpoint, data);
+}
+
+async function buy(){
+    let endpoint = 'cart/checkout';
+    return HttpClient.get(endpoint);
+}
+
+async function remove(){
+    let endpoint = 'cart/removeFromCart';
+    return HttpClient.post(endpoint);
+}
 
 const ProductService = {
     category,
     subCategory,
-    productList
+    productList,
+    addCart,
+    buy,
+    remove
 }
 
 export default ProductService;

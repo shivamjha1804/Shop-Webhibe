@@ -1,10 +1,23 @@
 import React from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
 import Header2 from '../../../Components/CommonComponent/Header2/Header2'
+import { useDispatch } from 'react-redux';
+import { addCart, cart } from '../../../Redux/Thunk/Product';
 
 const Product = ({ route }) => {
     const props = route.params.item;
-    console.log("props: ", props);
+    const dispatch = useDispatch();
+    // console.log("props: ", props);
+    const id = props._id;
+    // console.log("id : ", id);
+    
+
+
+    const addToCart = (data) => {
+        // console.log(cart(data));
+        dispatch(addCart(data))
+    };
+
     return (
         <View
             style={{
@@ -138,6 +151,10 @@ const Product = ({ route }) => {
                         paddingVertical: 10,
                         borderRadius: 10
                     }}
+
+                    onPress={() => {
+                        addToCart(props)
+                    }}
                 >
                     <Text
                         style={{
@@ -145,6 +162,7 @@ const Product = ({ route }) => {
                             fontWeight: '900',
                             color:'#000'
                         }}
+                        
                     >
                         Add To Cart
                     </Text>
