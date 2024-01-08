@@ -19,6 +19,7 @@ const Cart = () => {
                 <Label Image={require("../../../Assets/Image/App/Cart/Label/locationIcon.png")} Title={"Delivery Address"} />
                 <AddressBox />
                 <Label Title={"Shopping List"} />
+                
                 <CartCard />
             </ScrollView>
             <Button />

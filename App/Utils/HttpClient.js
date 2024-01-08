@@ -28,6 +28,7 @@ function Delete(endpoint, params) {
 
 async function request(endpoint, params = null, method = 'GET') {
     let token = await getToken();
+    console.log('token>',token)
 
     var xmlRequest = new XMLHttpRequest();
     let url = BASE_URL + endpoint;

@@ -1,23 +1,41 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
-// import { useDispatch } from 'react-redux'
-// import { remove } from '../../../../Redux/Thunk/Product';
+import { useDispatch } from 'react-redux'
+import { fetchCart, quantity, remove } from '../../../../Redux/Thunk/Product';
 import ProductService from '../../../../Services/Product';
+import { Icon } from 'react-native-basic-elements';
 
 const SubCard = ({ item, ...props }) => {
-    // const dispatch = useDispatch();
-    const id = item._id;
-    console.log("id : ", id);
+    const dispatch = useDispatch();
+    const id = item?.product_details?.[0]._id;
+    const [count, setCount] = useState(1);
+    // console.log("id : ", item);
+
+    useEffect(() => {
+        dispatch(fetchCart())
+    }, []);
 
     const removeItem = (data) => {
-        ProductService.remove()
-            .then(res => {
-                console.log("res", res);
-            })
-            .catch(err => {
-                console.log("err", err);
-            })
+        dispatch(remove(data))
     }
+
+    const addCounter = () => {
+        if (count === 5) {
+            return;
+        }
+
+        setCount(count + 1);
+        dispatch(quantity({id, count}))
+    }
+
+    const lessCounter = () => {
+        if (count <= 1) {
+            return;
+        }
+        setCount(count - 1);
+        dispatch(quantity({id, count}))
+    }
+
     return (
         <View
             style={{
@@ -89,15 +107,59 @@ const SubCard = ({ item, ...props }) => {
                     >
                         {'\u20B9'}{item.product_details?.[0]?.product_sellingprice}
                     </Text>
-                    <Text
+                    <View
                         style={{
-                            color: '#000',
-                            fontSize: 13,
-                            fontWeight: '600',
+                            flexDirection: 'row',
+                            columnGap: 5,
+                            alignItems: 'center'
                         }}
                     >
-                        Quantity: {item.quantity}
-                    </Text>
+                        <Text
+                            style={{
+                                color: '#000',
+                                fontWeight: '500'
+                            }}
+                        >
+                            Quantity:
+                        </Text>
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                columnGap: 3
+                            }}
+                        >
+                            <Icon
+                                name='minus-circle'
+                                type='FontAwesome'
+                                size={19}
+                                onPress={() => {
+                                    lessCounter()
+                                }}
+                            />
+                            <Text
+                                style={{
+                                    color: '#000',
+                                    backgroundColor: 'silver',
+                                    fontSize: 15,
+                                    fontWeight: '600',
+                                    paddingHorizontal: 10,
+                                    borderRadius: 5
+                                }}
+                            >
+                                {count}
+                            </Text>
+                            
+                            <Icon
+                                name='add-circle'
+                                type='Ionicons'
+                                size={20}
+                                onPress={() => {
+                                    addCounter()
+                                }}
+                            />
+                        </View>
+                    </View>
                 </View>
             </TouchableOpacity>
             <TouchableOpacity

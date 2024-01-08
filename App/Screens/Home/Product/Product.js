@@ -14,7 +14,7 @@ const Product = ({ route }) => {
 
 
     const addToCart = (data) => {
-        // console.log(cart(data));
+        console.log('datat>>',data);
         dispatch(addCart(data))
     };
 
@@ -153,7 +153,7 @@ const Product = ({ route }) => {
                     }}
 
                     onPress={() => {
-                        addToCart(props)
+                        addToCart(id)
                     }}
                 >
                     <Text

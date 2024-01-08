@@ -13,16 +13,17 @@ import Offer from '../../../Components/App/Dashboard/Offer/Offer';
 import ListOfProduct from '../../../Components/App/Dashboard/ListOfProduct/ListOfProduct';
 import SummerSale from '../../../Components/App/Dashboard/SummerSale/SummerSale';
 import Sponsered from '../../../Components/App/Dashboard/Sponsered/Sponsered';
-import ProductService from '../../../Services/Product';
-import { useDispatch, useSelector } from 'react-redux';
-import { addCart } from '../../../Redux/Thunk/Product';
+import { useDispatch } from 'react-redux';
+import { fetchCart } from '../../../Redux/Thunk/Product';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const { addCartData } = useSelector(state => state.Product);
+
   useEffect(() => {
-    dispatch(addCart(addCartData));
-  }, [dispatch]);
+    dispatch(fetchCart())
+  }, []);
+
+
   return (
     <ScrollView
       style={{

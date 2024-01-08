@@ -1,8 +1,9 @@
-import React from 'react'
-import { View } from 'react-native'
+import React, { useEffect } from 'react'
+import { Text, View } from 'react-native'
 import Card from '../../../App/ProductListComponent/Card/Card'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import SubCard from './SubCard'
+import { fetchCart } from '../../../../Redux/Thunk/Product'
 
 const Details = [
     {
@@ -58,11 +59,16 @@ const Details = [
 ]
 
 const CartCard = () => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(fetchCart())
+      }, []);
+    
     const { addCartData } = useSelector(state => state.Product);
-    // console.log("addCartData: ", addCartData);
+    console.log("addCartData: >>>>>>>>>>>>>>>>>>>>", addCartData);
     return (
         <View>
-            {
+            {addCartData && addCartData.length > 0 ?
                 addCartData.map((item, index) => {
                     return (
                         <SubCard
@@ -71,6 +77,10 @@ const CartCard = () => {
                         />
                     )
                 })
+                :
+                <View>
+                    <Text >No Data Found</Text>
+                </View>
             }
         </View>
     )

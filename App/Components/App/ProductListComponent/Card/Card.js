@@ -44,7 +44,7 @@ const Card = ({item, ...props}) => {
                         fontWeight: '600'
                     }}
                 >
-                    {item?.product_details?.[0]?.product_name}
+                    {item.product_name}
                 </Text>
                 <Text
                     style={{
