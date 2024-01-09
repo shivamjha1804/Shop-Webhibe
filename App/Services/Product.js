@@ -39,8 +39,9 @@ async function remove(data) {
     return HttpClient.Delete(endpoint, data);
 }
 
-async function quantity(data) {
+async function quantityChange(data) {
     let endpoint = 'cart/changeItemQuantity';
+    // console.log("HttpClient.post(endpoint, data) : ", HttpClient.post(endpoint, data));
     return HttpClient.post(endpoint, data);
 }
 
@@ -52,7 +53,7 @@ const ProductService = {
     buy,
     remove,
     fetchCart,
-    quantity
+    quantityChange
 }
 
 export default ProductService;

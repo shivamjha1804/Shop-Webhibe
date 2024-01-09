@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
-import { useDispatch } from 'react-redux'
-import { fetchCart, quantity, remove } from '../../../../Redux/Thunk/Product';
-import ProductService from '../../../../Services/Product';
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchCart, quantityChange, remove } from '../../../../Redux/Thunk/Product';
 import { Icon } from 'react-native-basic-elements';
 
 const SubCard = ({ item, ...props }) => {
     const dispatch = useDispatch();
     const id = item?.product_details?.[0]._id;
-    const [count, setCount] = useState(1);
+    const cartId = item?._id;
+    const [count, setCount] = useState(item.quantity);
+    // console.log("Quantity Data:- ", quantityData);
     // console.log("id : ", item);
 
     useEffect(() => {
@@ -19,21 +20,28 @@ const SubCard = ({ item, ...props }) => {
         dispatch(remove(data))
     }
 
-    const addCounter = () => {
+    const addCounter = (cart_id) => {
         if (count === 5) {
             return;
         }
-
         setCount(count + 1);
-        dispatch(quantity({id, count}))
+        let quantity = count;
+        quantity += 1;
+        console.log("quantity change....... :- ", quantity);
+        console.log("cart id.........:- ", cart_id);
+        dispatch(quantityChange({cart_id, quantity}))
     }
 
-    const lessCounter = () => {
+    const lessCounter = (cart_id) => {
         if (count <= 1) {
             return;
         }
         setCount(count - 1);
-        dispatch(quantity({id, count}))
+        let quantity = count;
+        quantity -= 1;
+        console.log("quantity change :- ", quantity);
+        console.log("cart id:- ", cart_id);
+        dispatch(quantityChange({cart_id, quantity}))
     }
 
     return (
@@ -134,7 +142,7 @@ const SubCard = ({ item, ...props }) => {
                                 type='FontAwesome'
                                 size={19}
                                 onPress={() => {
-                                    lessCounter()
+                                    lessCounter(cartId)
                                 }}
                             />
                             <Text
@@ -155,7 +163,7 @@ const SubCard = ({ item, ...props }) => {
                                 type='Ionicons'
                                 size={20}
                                 onPress={() => {
-                                    addCounter()
+                                    addCounter(cartId)
                                 }}
                             />
                         </View>

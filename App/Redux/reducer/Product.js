@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addCart, addCartAdding, buy, category, fetchCart, productList, quantity, remove, subCategory } from '../Thunk/Product';
+import { addCart, buy, category, fetchCart, productList, quantityChange, remove, subCategory } from '../Thunk/Product';
 
 export const ProductSlice = createSlice({
     name: 'product',
@@ -43,6 +43,9 @@ export const ProductSlice = createSlice({
                 // console.log("rejected: " ,action);
                 state.categoryLoading = false
             })
+
+
+
             .addCase(subCategory.pending, (state, action) => {
                 state.subCategoryLoading = true,
                     // console.log("pending: " ,action);
@@ -57,6 +60,9 @@ export const ProductSlice = createSlice({
                 // console.log("rejected: " ,action);
                 state.subCategoryLoading = false
             })
+
+
+
             .addCase(productList.pending, (state, action) => {
                 state.productListLoading = true,
                     // console.log("pending: " ,action);
@@ -88,6 +94,8 @@ export const ProductSlice = createSlice({
                 state.addCartDataLoading = false
             })
 
+
+
             .addCase(fetchCart.pending, (state, action) => {
                 state.addCartDataLoading = false
                 // console.log("fullfilled: ", action);
@@ -104,21 +112,37 @@ export const ProductSlice = createSlice({
                 state.addCartDataLoading = false
             })
 
-            .addCase(quantity.pending, (state, action) => {
+
+
+            .addCase(quantityChange.pending, (state, action) => {
                 state.quantityLoading = false
                 console.log("fullfilled: ", action);
 
             })
-            .addCase(quantity.fulfilled, (state, action) => {
-                state.quantityLoading = false,
-                    console.log("fullfilled: ", action);
-                state.quantityData = action.payload;
+            .addCase(quantityChange.fulfilled, (state, action) => {
+                state.quantityLoading = false;
+                // console.log("fullfilled: ", action);
+                // console.log("action payload :- ", {... action.payload});
+
+                // state.addCartData.forEach((elements) => {
+                //     if (elements._id === action.payload.cart_id) {
+                //         elements.quantity = action.payload.quantity;
+                //     }
+                // })
+                const data = state.addCartData.find((elements) => {
+                    return elements._id === action.payload.cart_id;
+                })
+               data.quantity = action.payload.quantity;
+                
             })
 
-            .addCase(quantity.rejected, (state, action) => {
-                console.log("rejected: " ,action);
+            .addCase(quantityChange.rejected, (state, action) => {
+                console.log("rejected: ", action);
                 state.quantityLoading = false
             })
+
+
+
             .addCase(buy.pending, (state, action) => {
                 state.buyLoading = true,
                     // console.log("pending: " ,action);
@@ -133,6 +157,9 @@ export const ProductSlice = createSlice({
                 // console.log("rejected: " ,action);
                 state.buyLoading = false
             })
+
+
+
             .addCase(remove.pending, (state, action) => {
                 state.removeLoading = true
                 // console.log("pending: ", action);

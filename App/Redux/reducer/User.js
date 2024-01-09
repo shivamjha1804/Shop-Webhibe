@@ -36,11 +36,11 @@ export const UserSlice = createSlice({
       })
       .addCase(login.pending, (state) => {
         state.userData = null
-        console.log("Enter in the pending");
+        // console.log("Enter in the pending");
         state.loginStatus = false
       })
       .addCase(login.fulfilled, (state, action) => {
-        console.log("Enter in the fulfilled");
+        // console.log("Enter in the fulfilled");
         state.userData = action.payload
         state.loginStatus = true
       })

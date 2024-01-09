@@ -48,20 +48,27 @@ export const buy = createAsyncThunk('cart/checkout', async (data) => {
     return response.data;
 })
 
-export const quantity = createAsyncThunk('cart/changeItemQuantity', async (data) => {
-    const response = await ProductService.quantity({
-        cart_id: data.id,
-        quantity: data.count
-    })
-    console.log("Response:-------- ", response);
-    Toast.show(`${response.message}`, Toast.SHORT, Toast.BOTTOM);
-    return response.data;
+export const quantityChange = createAsyncThunk('cart/changeItemQuantity', async (data) => {
+    try {
+
+        const response = await ProductService.quantityChange({
+            cart_id: data.cart_id,
+            quantity: data.quantity
+        });
+        console.log("Response from service:", response);
+        Toast.show(`${response.message}`, Toast.SHORT, Toast.BOTTOM);
+        return data;
+    } catch (error) {
+        console.error("Error in quantityChange ", error);
+        // Handle error or throw it further
+        throw error;
+    }
 })
 
 export const remove = createAsyncThunk('cart/removeFromCart', async (data) => {
     // console.log(remove(data))
     const response = await ProductService.remove({ product_id: data })
-    console.log("Response: ", response);
+    // console.log("Response: ", response);
     Toast.show(`${response.message}`, Toast.SHORT, Toast.BOTTOM);
     return data;
 })

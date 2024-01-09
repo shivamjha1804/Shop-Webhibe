@@ -12,7 +12,7 @@ const Button = () => {
     const [isModalVisible, setModalVisible] = useState(false);
 
     const payment = (data) => {
-        console.log("Data: ", data)
+        console.log("Data: ", JSON.stringify(data))
         // dispatch(buy(data))
         ProductService.buy()
         .then(res => {

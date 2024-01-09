@@ -10,6 +10,7 @@ import Payment from '../Screens/Home/Payment/Payment';
 import SubCategory from '../Screens/Home/SubCategory/SubCategory';
 import ProductList from '../Screens/Home/ProductList/ProductList';
 import Product from '../Screens/Home/Product/Product';
+import AddressForm from '../Screens/Home/AddressForm/AddressForm';
 
 
 const Stack = createStackNavigator();
@@ -61,6 +62,11 @@ const AppStack = () => {
       <Stack.Screen 
         name="Product" 
         component={Product} 
+        />
+
+      <Stack.Screen 
+        name="AddressForm" 
+        component={AddressForm} 
         />
     </Stack.Navigator>
   );

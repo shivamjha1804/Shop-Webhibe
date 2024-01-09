@@ -1,5 +1,6 @@
 import React from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
+import NavigationService from '../../../../Services/Navigation'
 
 const AddressBox = () => {
     return (
@@ -26,7 +27,11 @@ const AddressBox = () => {
             </View>
             <View>
                 <View style={{ borderWidth: 0.4, padding: 30, borderRadius: 10, shadowColor: 'gray', shadowRadius: 10, borderColor: '#CACACA' }}>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {
+                            NavigationService.navigate("AddressForm")
+                        }}
+                    >
                         <Image source={require("../../../../Assets/Image/App/Cart/AddressBox/addressAddIcon.png")} />
                     </TouchableOpacity>
                 </View>
