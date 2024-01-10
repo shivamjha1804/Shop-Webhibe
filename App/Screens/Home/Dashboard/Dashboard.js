@@ -15,12 +15,17 @@ import SummerSale from '../../../Components/App/Dashboard/SummerSale/SummerSale'
 import Sponsered from '../../../Components/App/Dashboard/Sponsered/Sponsered';
 import { useDispatch } from 'react-redux';
 import { fetchCart } from '../../../Redux/Thunk/Product';
+import { getAddress } from '../../../Redux/Thunk/Address';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchCart())
+  }, []);
+
+  useEffect(() => {
+    dispatch(getAddress())
   }, []);
 
 

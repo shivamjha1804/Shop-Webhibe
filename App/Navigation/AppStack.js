@@ -11,6 +11,8 @@ import SubCategory from '../Screens/Home/SubCategory/SubCategory';
 import ProductList from '../Screens/Home/ProductList/ProductList';
 import Product from '../Screens/Home/Product/Product';
 import AddressForm from '../Screens/Home/AddressForm/AddressForm';
+import AddressBox from '../Components/App/Cart/AddressBox/AddressBox';
+import Addresses from '../Components/App/Cart/AddressBox/Addresses';
 
 
 const Stack = createStackNavigator();
@@ -67,6 +69,11 @@ const AppStack = () => {
       <Stack.Screen 
         name="AddressForm" 
         component={AddressForm} 
+        />
+
+      <Stack.Screen 
+        name="Addresses" 
+        component={Addresses} 
         />
     </Stack.Navigator>
   );

@@ -65,7 +65,7 @@ const CartCard = () => {
       }, []);
     
     const { addCartData } = useSelector(state => state.Product);
-    console.log("addCartData: >>>>>>>>>>>>>>>>>>>>", addCartData);
+    // console.log("addCartData: >>>>>>>>>>>>>>>>>>>>", addCartData);
     return (
         <View>
             {addCartData && addCartData.length > 0 ?

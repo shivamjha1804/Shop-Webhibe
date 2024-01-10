@@ -1,21 +1,23 @@
 import React, { useState } from 'react'
-import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import Header2 from '../../../Components/CommonComponent/Header2/Header2'
 import { useDispatch } from 'react-redux'
 import { RadioButton } from 'react-native-basic-elements'
 import { addAddress } from '../../../Redux/Thunk/Address'
 
 const AddressForm = () => {
-
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState(0);
   const [address, setAddress] = useState("");
-  const [lankmark, setLandmark] = useState("");
-  const [pincode, setPincode] = useState(0);
-  const [selected, setSelected] = useState(false)
+  const [landmark, setLandmark] = useState("");
+  const [pincode, setPincode] = useState(0)
+  const [selected, setSelected] = useState(false);
+  const [typeAddress, setTypeAddress] = useState('');
   // const [selected2, setSelected2] = useState(false);
   // const [selected3, setSelected3] = useState(false);
+
+  // let typeAddress = 'Home';
 
   const addressType = [
     {
@@ -44,7 +46,7 @@ const AddressForm = () => {
       alert("Please Enter Address")
       return;
     }
-    if (lankmark === "") {
+    if (landmark === "") {
       alert("Please Enter Landmark")
       return;
     }
@@ -53,21 +55,26 @@ const AddressForm = () => {
       return;
     }
 
-    const typeAddress = selected;
-    console.log(typeAddress);
+
 
     let addressData = {
       name: name,
       mobileNo: mobile,
       address: address,
-      landmark: lankmark,
+      landmark: landmark,
       pincode: pincode,
       addressType: typeAddress
     }
-
-    console.log(addressData);
+    // console.log("name:------", name);
+    // console.log("mobile number :--------", mobile);
+    // console.log("addresss :----------", address);
+    // console.log("landmark :---------", landmark);
+    // console.log("pincode :------", pincode);
+    // console.log("typeAddress-----", typeAddress);
+    console.log("addressData------------", addressData);
 
     dispatch(addAddress(addressData))
+    console.log(dispatch(addAddress(addressData)));
   }
 
   return (
@@ -108,7 +115,7 @@ const AddressForm = () => {
             placeholder='Enter Your Name'
             placeholderTextColor={"grey"}
             value={name}
-            onChange={(Text) => {
+            onChangeText={(Text) => {
               setName(Text)
             }}
           />
@@ -128,7 +135,7 @@ const AddressForm = () => {
             keyboardType='numeric'
             maxLength={10}
             value={mobile}
-            onChange={(Text) => {
+            onChangeText={(Text) => {
               setMobile(Text)
             }}
           />
@@ -146,7 +153,7 @@ const AddressForm = () => {
             placeholder='Enter Your Address'
             placeholderTextColor={"grey"}
             value={address}
-            onChange={(Text) => {
+            onChangeText={(Text) => {
               setAddress(Text)
             }}
           />
@@ -157,14 +164,14 @@ const AddressForm = () => {
           <Text
             style={styles.Label}
           >
-            Lankmark:
+            Landmark:
           </Text>
           <TextInput
             style={styles.Input}
             placeholder='Enter Your Lankmark'
             placeholderTextColor={"grey"}
-            value={lankmark}
-            onChange={(Text) => {
+            value={landmark}
+            onChangeText={(Text) => {
               setLandmark(Text)
             }}
           />
@@ -178,14 +185,14 @@ const AddressForm = () => {
             Pincode:
           </Text>
           <TextInput
+            value={pincode}
             style={styles.Input}
             placeholder='Enter Your Pincode'
             placeholderTextColor={"grey"}
             keyboardType='numeric'
             maxLength={6}
-            value={pincode}
-            onChange={(Text) => {
-              setPincode(Text)
+            onChangeText={(val) => {
+              setPincode(val)
             }}
           />
         </View>
@@ -223,10 +230,10 @@ const AddressForm = () => {
                     selected={index == selected}
                     onChange={(val) => {
                       setSelected(index)
-                      // console.log(item.type);
+                      setTypeAddress(item.type)
                     }}
                     size={20}
-                    containerStyle={{elevation: 5, backgroundColor: '#fff'}}
+                    containerStyle={{ elevation: 5, backgroundColor: '#fff' }}
                   />
                 </View>
               )
