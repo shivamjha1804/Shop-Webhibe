@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
 import NavigationService from '../../../../Services/Navigation'
 import { Icon } from 'react-native-basic-elements'
+import { useDispatch } from 'react-redux'
+import { getAddress } from '../../../../Redux/Thunk/Address'
 
 const AddressBox = (props) => {
-    // console.log("props---->", props.item.params.selectedAddress.name);
-    console.log("Props::::", props);
+    console.log("props---->", props);
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getAddress())
+    }, [])
     return (
         <View>
             <View style={{ flexDirection: 'row', columnGap: 10, }}>
@@ -53,66 +59,69 @@ const AddressBox = (props) => {
                     </View>
                 </View>
             </View>
-            {/* <View
-                style={{
-                    backgroundColor: 'white',
-                    borderWidth: 0.4,
-                    justifyContent: 'center',
-                    borderRadius: 10,
-                    borderColor: '#CACACA',
-                    padding:10,
-                    marginTop: 15
-                }}
-            >
-                <Text
+
+            {
+                props.add == undefined ? null : <View
                     style={{
-                        color:'#000',
-                        fontSize:15
+                        backgroundColor: 'white',
+                        borderWidth: 0.4,
+                        justifyContent: 'center',
+                        borderRadius: 10,
+                        borderColor: '#CACACA',
+                        padding: 10,
+                        marginTop: 15
                     }}
                 >
-                  {props.item.addressType}
-                </Text>
-                <Text
-                    style={{
-                        color:'#000',
-                        fontSize:15
-                    }}
-                >
-                  {props.item.name}
-                </Text>
-                <Text
-                    style={{
-                        color:'#000',
-                        fontSize:15
-                    }}
-                >
-                  {props.item.mobileNo}
-                </Text>
-                <Text
-                    style={{
-                        color:'#000',
-                        fontSize:15
-                    }}
-                >
-                  {props.item.address}
-                </Text>
-                <Text
-                    style={{
-                        color:'#000',
-                        fontSize:15
-                    }}
-                >
-                  {props.item.landmark}
-                </Text>
-                <Text
-                    style={{
-                        color:'#000',
-                        fontSize:15
-                    }}
-                >
-                  {props.item.pincode}
-                </Text>
-            </View> */}
+                    <Text
+                        style={{
+                            color: '#000',
+                            fontSize: 15
+                        }}
+                    >
+                        {props.add.defaultAddress.addressType}
+                    </Text>
+                    <Text
+                        style={{
+                            color: '#000',
+                            fontSize: 15
+                        }}
+                    >
+                        {props.add.defaultAddress.name}
+                    </Text>
+                    <Text
+                        style={{
+                            color: '#000',
+                            fontSize: 15
+                        }}
+                    >
+                        {props.add.defaultAddress.mobileNo}
+                    </Text>
+                    <Text
+                        style={{
+                            color: '#000',
+                            fontSize: 15
+                        }}
+                    >
+                        {props.add.defaultAddress.address}
+                    </Text>
+                    <Text
+                        style={{
+                            color: '#000',
+                            fontSize: 15
+                        }}
+                    >
+                        {props.add.defaultAddress.landmark}
+                    </Text>
+                    <Text
+                        style={{
+                            color: '#000',
+                            fontSize: 15
+                        }}
+                    >
+                        {props.add.defaultAddress.pincode}
+                    </Text>
+                </View>
+            }
         </View>
     )
 }

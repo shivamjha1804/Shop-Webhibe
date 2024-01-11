@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import Header2 from '../../../Components/CommonComponent/Header2/Header2'
 import { useDispatch } from 'react-redux'
 import { RadioButton } from 'react-native-basic-elements'
-import { addAddress } from '../../../Redux/Thunk/Address'
+import { addAddress, getAddress } from '../../../Redux/Thunk/Address'
+import NavigationService from '../../../Services/Navigation'
 
 const AddressForm = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,10 @@ const AddressForm = () => {
   // const [selected3, setSelected3] = useState(false);
 
   // let typeAddress = 'Home';
+
+  // useEffect(() => {
+  //   dispatch(getAddress())
+  // },[])
 
   const addressType = [
     {
@@ -38,7 +43,7 @@ const AddressForm = () => {
       alert("Please Enter Name")
       return;
     }
-    if (mobile === "") {
+    if (mobile === 0) {
       alert("Please Enter Mobile Number")
       return;
     }
@@ -50,13 +55,13 @@ const AddressForm = () => {
       alert("Please Enter Landmark")
       return;
     }
-    if (pincode === "") {
+    if (pincode === 0) {
       alert("Please Enter Pincode")
       return;
     }
-
-
-
+    
+    
+    
     let addressData = {
       name: name,
       mobileNo: mobile,
@@ -66,15 +71,16 @@ const AddressForm = () => {
       addressType: typeAddress
     }
     // console.log("name:------", name);
-    // console.log("mobile number :--------", mobile);
     // console.log("addresss :----------", address);
+    // console.log("mobile number :--------", mobile);
     // console.log("landmark :---------", landmark);
     // console.log("pincode :------", pincode);
     // console.log("typeAddress-----", typeAddress);
     console.log("addressData------------", addressData);
 
     dispatch(addAddress(addressData))
-    console.log(dispatch(addAddress(addressData)));
+    NavigationService.navigate('Cart');
+    // console.log(dispatch(addAddress(addressData)));
   }
 
   return (

@@ -3,27 +3,36 @@ import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import Header2 from '../../../CommonComponent/Header2/Header2'
 import AddressCard from './AddressCard'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAddress } from '../../../../Redux/Thunk/Address'
+import { defaultAddress, getAddress } from '../../../../Redux/Thunk/Address'
 import NavigationService from '../../../../Services/Navigation'
 
 const Addresses = () => {
-    const { getAddressData } = useSelector(state => state.Address);
     const dispatch = useDispatch();
 
-    const [fullAddress, setfullAddress] = useState(getAddressData)
-    
-    const selectedAddress = fullAddress.find((elements) => {
-        return elements.selected === true
-    })
-    
-    // console.log("selectedAddress:---------->>>>",selectedAddress);
-    
     useEffect(() => {
         dispatch(getAddress())
-    }, []);
-    // const Choosed = (val)=>{
-    //     console.log('vall>',val)
-    // }
+    }, [dispatch]);
+
+    const { getAddressData } = useSelector(state => state.Address);
+    const [fullAddress, setfullAddress] = useState(getAddressData)
+    const [ChildValue, SetChildValue] = useState()
+
+    useEffect(() => {
+        setfullAddress(getAddressData)
+    }, [getAddressData])
+
+    const selectedAddress = fullAddress.find((elements) => {
+        return elements.isDefault === true
+    })
+
+    const getChildData = (val) => {
+        SetChildValue(val)
+    };
+
+    const addressDefault = (id) => {
+        dispatch(defaultAddress(id))
+    }
+
     return (
         <View
             style={{
@@ -53,8 +62,9 @@ const Addresses = () => {
                                 item={item}
                                 key={index}
                                 addressData={fullAddress}
-                                setAddressData = {setfullAddress}
-                                selectedAddress={(val)=>Choosed(val)}
+                                setAddressData={setfullAddress}
+                                selectedAddress={(val) => Choosed(val)}
+                                sendToParent={getChildData}
                             />
                         )
                     })
@@ -63,10 +73,10 @@ const Addresses = () => {
 
             <View
                 style={{
-                    backgroundColor:'#fff',
-                    paddingVertical:20,
-                    justifyContent:'center',
-                    alignItems:'center',
+                    backgroundColor: '#fff',
+                    paddingVertical: 20,
+                    justifyContent: 'center',
+                    alignItems: 'center',
                     borderTopLeftRadius: 15,
                     borderTopRightRadius: 15,
                 }}
@@ -74,22 +84,23 @@ const Addresses = () => {
                 <TouchableOpacity
                     style={{
                         backgroundColor: 'green',
-                        justifyContent:'center',
-                        alignItems:'center',
+                        justifyContent: 'center',
+                        alignItems: 'center',
                         paddingHorizontal: 25,
-                        paddingVertical:15,
+                        paddingVertical: 15,
                         borderRadius: 15
                     }}
 
                     onPress={() => {
-                        NavigationService.navigate('Cart', {selectedAddress})
+                        NavigationService.navigate('Cart', { selectedAddress })
+                        addressDefault(ChildValue)
                     }}
                 >
                     <Text
                         style={{
-                            color:'#000',
+                            color: '#000',
                             fontSize: 20,
-                            fontWeight:'800'
+                            fontWeight: '800'
                         }}
                     >
                         Confirm

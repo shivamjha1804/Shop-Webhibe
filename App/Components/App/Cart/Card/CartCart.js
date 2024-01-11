@@ -62,7 +62,7 @@ const CartCard = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(fetchCart())
-      }, []);
+      }, [dispatch]);
     
     const { addCartData } = useSelector(state => state.Product);
     // console.log("addCartData: >>>>>>>>>>>>>>>>>>>>", addCartData);

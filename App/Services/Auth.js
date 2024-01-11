@@ -6,9 +6,11 @@ const getAccount = async () => {
     return Storage.get('account');
 }
 
+
 async function setAccount(data) {
     return await Storage.set('account', data);
 }
+
 
 async function setToken(data) {
     return await Storage.set('token', data);
@@ -29,7 +31,7 @@ const AuthService = {
     setAccount,
     setToken,
     login,
-    signUp
+    signUp,
 }
 
 export default AuthService;

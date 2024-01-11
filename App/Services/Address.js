@@ -14,15 +14,23 @@ async function getAddress(){
 
 async function deleteAddress(data){
     let endpoint = 'address/deleteAddress';
-    console.log("Dta:", data);
+    // console.log("Dta:", data);
     return HttpClient.Delete(endpoint, data);
 }
+
+async function defaultAddress(data){
+    let endpoint = 'address/changeDefault';
+    // console.log("Dta:", data);
+    return HttpClient.put(endpoint, data);
+}
+
 
 
 const AddressService = {
    addAddress,
    getAddress,
-   deleteAddress
+   deleteAddress,
+   defaultAddress
 }
 
 export default AddressService;

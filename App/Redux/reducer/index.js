@@ -6,5 +6,6 @@ import Address from "./Address";
 export default combineReducers({
    user: User,
    Product: Product,
-   Address: Address
+   Address: Address,
+   // DefaultAddress: ,
 })

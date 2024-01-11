@@ -3,39 +3,39 @@ import { ScrollView, Text, TouchableOpacity } from 'react-native'
 import { View } from 'react-native'
 import { Icon, RadioButton } from 'react-native-basic-elements';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteAddress, getAddress } from '../../../../Redux/Thunk/Address';
+import { defaultAddress, deleteAddress, getAddress } from '../../../../Redux/Thunk/Address';
 
-const AddressCard = ({ item, index, addressData, setAddressData }) => {
-    const { getAddressData } = useSelector(state = state => state.Address)
-    console.log("getAddressData :----", getAddressData);
+const AddressCard = ({ item, index, addressData, setAddressData, sendToParent }) => {
     const dispatch = useDispatch();
-    console.log("hfskkkkkkkkk",item._id);
 
-   
-    const addressDelete = (id) => {
-        dispatch(deleteAddress(id))
-
+    useEffect(() => {
         dispatch(getAddress())
-        // useEffect(() => {
-        // }, []);
-    
-        // console.log("hgsllllllllllllll");
-    }
+    },[])
 
-    // console.log('selectedAddress>>>',selectedAddress)
+    const addressDelete = (id) => {
+        // console.log("clicked");
+        dispatch(deleteAddress(id))
+    }
 
     const SelectRadioBtn = () => {
 
         setAddressData(addressData.map((it => {
             return it._id == item._id ? { ...it, selected: true } : ({ ...it, selected: false })
         })))
+    }
 
+    const addressDefault = (id) => {
+        // console.log("clicked", id);
+        sendToParent(id)
     }
 
     return (
         <View>
             <TouchableOpacity
-                onPress={() => SelectRadioBtn()}
+                onPress={() => {
+                    SelectRadioBtn()
+                    addressDefault(item._id)
+                }}
                 style={{
                     backgroundColor: '#fff',
                     elevation: 5,

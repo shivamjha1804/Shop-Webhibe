@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addAddress, deleteAddress, getAddress } from '../Thunk/Address';
+import { addAddress, defaultAddress, deleteAddress, getAddress } from '../Thunk/Address';
 
 export const AddressSlice = createSlice({
     name:'address',
@@ -8,7 +8,10 @@ export const AddressSlice = createSlice({
         addAddressLoading: false,
 
         getAddressData: [],
-        getAddressLoading: false
+        getAddressLoading: false,
+
+        defaultAddress: [],
+        defaultAddressLoading: false
     },
 
     extraReducers:(builder) => {
@@ -45,16 +48,29 @@ export const AddressSlice = createSlice({
             // state.addressData = []
         })
         .addCase(deleteAddress.fulfilled, (state, action) => {
-            getAddressLoading = false,
-            console.log("action: --------------", action);
+            getAddressLoading = false;
+            // console.log("action: --------------", action.payload);
             // state.getAddressData = action.payload;
             const data = state.getAddressData.filter(
-                data => data.address_id != action.payload
+                item => item._id != action.payload
             );
             state.getAddressData = data;
         })
         .addCase(deleteAddress.rejected, (state, action) => {
             getAddressLoading = false
+        })
+
+        .addCase(defaultAddress.pending, (state, action) => {
+            defaultAddressLoading = true;
+        })
+        .addCase(defaultAddress.fulfilled, (state, action) => {
+            defaultAddressLoading = false;
+            state.defaultAddress = action.payload;
+            console.log("ksjhkjsfhkdf:-", action.payload);
+            console.log("hfakkkkkkkkk:- ", state.defaultAddress);
+        })
+        .addCase(defaultAddress.rejected,(state, action) => {
+            defaultAddressLoading = false
         })
     }
 })

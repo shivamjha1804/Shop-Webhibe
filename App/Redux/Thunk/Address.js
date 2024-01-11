@@ -32,13 +32,26 @@ export const getAddress = createAsyncThunk('address/showAddress', async() => {
 
 
 export const deleteAddress = createAsyncThunk('address/deleteAddress', async(data) => {
-    console.log("data: -------------", data);
+    // console.log("data: -------------", data);
     const response = await AddressService.deleteAddress({
         address_id : data
     }).catch((err) => {
         console.log("error:", err);
     })
-    console.log("Response:----------", response);
+    // console.log("Response:----------", response);
     Toast.show(`${response.message}`, Toast.SHORT, Toast.BOTTOM);
     return data;
+})
+
+
+export const defaultAddress = createAsyncThunk('address/changeDefault',async(data) => {
+    console.log("Data::::::::-----------", data);
+    const response = await AddressService.defaultAddress({
+        address_id: data
+    })
+    .catch((err) => {
+        console.log("error:::::", err);
+    })
+    console.log("Response::::::::-----------", response);
+    return response;
 })
