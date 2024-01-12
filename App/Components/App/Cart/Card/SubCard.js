@@ -27,8 +27,8 @@ const SubCard = ({ item, ...props }) => {
         setCount(count + 1);
         let quantity = count;
         quantity += 1;
-        console.log("quantity change....... :- ", quantity);
-        console.log("cart id.........:- ", cart_id);
+        // console.log("quantity change....... :- ", quantity);
+        // console.log("cart id.........:- ", cart_id);
         dispatch(quantityChange({cart_id, quantity}))
     }
 
@@ -39,8 +39,8 @@ const SubCard = ({ item, ...props }) => {
         setCount(count - 1);
         let quantity = count;
         quantity -= 1;
-        console.log("quantity change :- ", quantity);
-        console.log("cart id:- ", cart_id);
+        // console.log("quantity change :- ", quantity);
+        // console.log("cart id:- ", cart_id);
         dispatch(quantityChange({cart_id, quantity}))
     }
 

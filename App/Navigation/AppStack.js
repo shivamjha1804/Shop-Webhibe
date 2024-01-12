@@ -13,6 +13,8 @@ import Product from '../Screens/Home/Product/Product';
 import AddressForm from '../Screens/Home/AddressForm/AddressForm';
 import AddressBox from '../Components/App/Cart/AddressBox/AddressBox';
 import Addresses from '../Components/App/Cart/AddressBox/Addresses';
+import ProfileForm from '../Screens/Home/ProfileForm/ProfileForm';
+import ProfilePictureUpload from '../Components/App/Profile/ProfilePicture/ProfilePictureUpload';
 
 
 const Stack = createStackNavigator();
@@ -74,6 +76,16 @@ const AppStack = () => {
       <Stack.Screen 
         name="Addresses" 
         component={Addresses} 
+        />
+
+      <Stack.Screen 
+        name="ProfileForm" 
+        component={ProfileForm} 
+        />
+
+      <Stack.Screen 
+        name="ProfilePictureUpload" 
+        component={ProfilePictureUpload} 
         />
     </Stack.Navigator>
   );

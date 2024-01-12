@@ -76,7 +76,7 @@ const AddressForm = () => {
     // console.log("landmark :---------", landmark);
     // console.log("pincode :------", pincode);
     // console.log("typeAddress-----", typeAddress);
-    console.log("addressData------------", addressData);
+    // console.log("addressData------------", addressData);
 
     dispatch(addAddress(addressData))
     NavigationService.navigate('Cart');

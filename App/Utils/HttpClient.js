@@ -78,12 +78,15 @@ const FileUpload = async (url, file, object_get = {}) => {
         objArray.forEach((element) => {
             data.append(element, object_get[element]);
         });
-
+console.log({
+    uri: file.path,
+    type: file.mime,
+});
         if (file.path != '') {
             let get_originalname = await getOriginalname(file.path);
             console.log('originalnam', get_originalname);
 
-            data.append('video', {
+            data.append('product_image', {
                 uri: file.path,
                 type: file.mime,
                 name: get_originalname,
@@ -106,7 +109,7 @@ const FileUpload = async (url, file, object_get = {}) => {
         xhr.open('POST', apiUrl);
         xhr.setRequestHeader('Content-Type', 'multipart/form-data');
         xhr.setRequestHeader('cache-control', 'no-cache');
-        xhr.setRequestHeader('Authorization', token);
+        xhr.setRequestHeader('authorization', token);
 
         xhr.send(data);
     });

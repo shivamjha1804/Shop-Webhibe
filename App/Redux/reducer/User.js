@@ -31,7 +31,7 @@ export const UserSlice = createSlice({
       })
       .addCase(signUp.rejected, (state, action) => {
         state.userData = null
-        console.log(action);
+        // console.log(action);
         state.loginStatus = false
       })
       .addCase(login.pending, (state) => {
@@ -46,7 +46,7 @@ export const UserSlice = createSlice({
       })
       .addCase(login.rejected, (state, action) => {
         state.userData = null
-        console.log(action);
+        // console.log(action);
         state.loginStatus = false
       })
   }

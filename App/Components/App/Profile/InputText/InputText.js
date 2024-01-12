@@ -5,7 +5,7 @@ import { AppTextInput, Icon } from 'react-native-basic-elements'
 const InputText = (prop) => {
   return (
     <View style={{paddingVertical: 10}}>
-        <AppTextInput
+        {/* <AppTextInput
             title= {prop.Title}
             titleStyle={{
               color: 'black',
@@ -20,7 +20,9 @@ const InputText = (prop) => {
              
             // placeholder = ""
             secureTextEntry = {prop.Password}
-        />
+        /> */}
+
+        
     </View>
   )
 }

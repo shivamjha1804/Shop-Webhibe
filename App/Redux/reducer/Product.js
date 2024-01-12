@@ -116,7 +116,7 @@ export const ProductSlice = createSlice({
 
             .addCase(quantityChange.pending, (state, action) => {
                 state.quantityLoading = false
-                console.log("fullfilled: ", action);
+                // console.log("fullfilled: ", action);
 
             })
             .addCase(quantityChange.fulfilled, (state, action) => {
@@ -137,7 +137,7 @@ export const ProductSlice = createSlice({
             })
 
             .addCase(quantityChange.rejected, (state, action) => {
-                console.log("rejected: ", action);
+                // console.log("rejected: ", action);
                 state.quantityLoading = false
             })
 

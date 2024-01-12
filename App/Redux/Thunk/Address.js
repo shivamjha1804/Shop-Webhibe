@@ -45,13 +45,13 @@ export const deleteAddress = createAsyncThunk('address/deleteAddress', async(dat
 
 
 export const defaultAddress = createAsyncThunk('address/changeDefault',async(data) => {
-    console.log("Data::::::::-----------", data);
+    // console.log("Data::::::::-----------", data);
     const response = await AddressService.defaultAddress({
         address_id: data
     })
     .catch((err) => {
         console.log("error:::::", err);
     })
-    console.log("Response::::::::-----------", response);
+    // console.log("Response::::::::-----------", response);
     return response;
 })

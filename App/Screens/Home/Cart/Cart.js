@@ -13,7 +13,7 @@ const Cart = () => {
     const dispatch = useDispatch();
     const { defaultAddress } = useSelector(state => state.Address);
 
-    console.log("Default Address:- ", defaultAddress);
+    // console.log("Default Address:- ", defaultAddress);
 
 
 

@@ -16,6 +16,7 @@ import Sponsered from '../../../Components/App/Dashboard/Sponsered/Sponsered';
 import { useDispatch } from 'react-redux';
 import { fetchCart } from '../../../Redux/Thunk/Product';
 import { getAddress } from '../../../Redux/Thunk/Address';
+import { getProfile } from '../../../Redux/Thunk/Profile';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ const Dashboard = () => {
     dispatch(getAddress())
   }, []);
 
+  useEffect(() => {
+    dispatch(getProfile())
+  }, [])
 
   return (
     <ScrollView

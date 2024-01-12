@@ -55,7 +55,7 @@ export const quantityChange = createAsyncThunk('cart/changeItemQuantity', async 
             cart_id: data.cart_id,
             quantity: data.quantity
         });
-        console.log("Response from service:", response);
+        // console.log("Response from service:", response);
         Toast.show(`${response.message}`, Toast.SHORT, Toast.BOTTOM);
         return data;
     } catch (error) {

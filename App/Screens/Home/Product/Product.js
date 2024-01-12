@@ -14,7 +14,7 @@ const Product = ({ route }) => {
 
 
     const addToCart = (data) => {
-        console.log('datat>>',data);
+        // console.log('datat>>',data);
         dispatch(addCart(data))
     };
 
