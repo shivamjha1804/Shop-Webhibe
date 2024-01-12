@@ -5,6 +5,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import ProfileService from '../../../../Services/Profile';
 import NavigationService from '../../../../Services/Navigation';
 import { useDispatch } from 'react-redux';
+import { updateProfile } from '../../../../Redux/Thunk/Profile';
 
 
 

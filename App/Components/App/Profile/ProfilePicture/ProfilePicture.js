@@ -7,7 +7,8 @@ const ProfilePicture = () => {
     const { profilePictureImage } = useSelector(state => state.Profile)
 
     console.log("profilePictureImage", profilePictureImage);
-    return (        <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 50, alignItems:'center'}}>
+    return (
+        <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 50, alignItems: 'center' }}>
 
             <Image source={
                 profilePictureImage == [] 
@@ -21,6 +22,16 @@ const ProfilePicture = () => {
                     borderRadius: 10
                 }}
             />
+            {/* <Image source={require("../../../../Assets/Image/App/Profile/ProfilePicture/ProfilePicture.png")}
+
+
+                style={{
+                    backgroundColor: "red",
+                    height: "30%",
+                    width: "30%",
+                    borderRadius: 10
+                }}
+            /> */}
             <TouchableOpacity
                 onPress={() => {
                     NavigationService.navigate('ProfilePictureUpload')
