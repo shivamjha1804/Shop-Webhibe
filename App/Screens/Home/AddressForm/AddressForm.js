@@ -9,10 +9,10 @@ import NavigationService from '../../../Services/Navigation'
 const AddressForm = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
-  const [mobile, setMobile] = useState(0);
+  const [mobile, setMobile] = useState("");
   const [address, setAddress] = useState("");
   const [landmark, setLandmark] = useState("");
-  const [pincode, setPincode] = useState(0)
+  const [pincode, setPincode] = useState("")
   const [selected, setSelected] = useState(false);
   const [typeAddress, setTypeAddress] = useState('');
   // const [selected2, setSelected2] = useState(false);
@@ -140,9 +140,9 @@ const AddressForm = () => {
             placeholderTextColor={"grey"}
             keyboardType='numeric'
             maxLength={10}
-            value={mobile}
+            value={String(mobile)}
             onChangeText={(Text) => {
-              setMobile(Text)
+              Number(setMobile(Text))
             }}
           />
         </View>
@@ -191,14 +191,14 @@ const AddressForm = () => {
             Pincode:
           </Text>
           <TextInput
-            value={pincode}
+            value={String(pincode)}
             style={styles.Input}
             placeholder='Enter Your Pincode'
             placeholderTextColor={"grey"}
             keyboardType='numeric'
             maxLength={6}
             onChangeText={(val) => {
-              setPincode(val)
+              Number(setPincode(val))
             }}
           />
         </View>

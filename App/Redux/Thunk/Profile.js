@@ -12,8 +12,8 @@ export const putProfile = createAsyncThunk('profile/updateProfile', async (data)
     });
 
     Toast.show(`${response.message}`, Toast.SHORT, Toast.BOTTOM);
-    console.log("Data ::: ", data);
-    console.log("response message", response.message);
+    // console.log("Data ::: ", data);
+    // console.log("response message", response.message);
 
     return data;
 })
@@ -29,7 +29,7 @@ export const getProfile = createAsyncThunk('profile/getProfile', async () => {
 export const updateProfile = createAsyncThunk('product/modify/image/addProductImage', async (data) => {
     // console.log("innnnn");
     const response = await ProfileService.uploadProfile(data);
-    console.log("response:::", response);
+    // console.log("response:::", response);
     return response.url;
 })
 

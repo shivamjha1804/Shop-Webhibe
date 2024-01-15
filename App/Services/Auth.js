@@ -1,6 +1,10 @@
 import HttpClient from "../Utils/HttpClient"
 import Storage from "../Utils/Storage";
 
+async function signUp(data){
+    let endpoint = 'auth/register';
+    return HttpClient.post(endpoint, data);
+}
 
 const getAccount = async () => {
     return Storage.get('account');
@@ -16,10 +20,6 @@ async function setToken(data) {
     return await Storage.set('token', data);
 }
 
-async function signUp(data){
-    let endpoint = 'auth/register';
-    return HttpClient.post(endpoint, data);
-}
 
 async function login(data) {
     let endpoint = 'auth/login';

@@ -18,26 +18,29 @@ const Shop = () => {
       <ScrollView>
         <View style={{ paddingHorizontal: 20 }}>
           <Header2 ImageLeft={require("../../../Assets/Image/App/Shop/Header2/BackIcon.png")} ImageRight={require("../../../Assets/Image/App/Shop/Header2/cartIcon.png")} />
-          <ProductImage/>
-          <Size/>
-          <Description/>
-          <Tags/>
+          <ProductImage />
+          <Size />
+          <Description />
+          <Tags />
           <View style={{ flexDirection: 'row', columnGap: 20, marginVertical: 20, marginLeft: 11 }}>
-            <AddCart/>
-            <BuyNow/>
+            <AddCart />
+            <BuyNow />
           </View>
-          <Timer/>
+          <Timer />
           <View style={{ flexDirection: 'row', columnGap: 5, marginTop: 20 }}>
             <Compare Title={"View Similar"} Image={require("../../../Assets/Image/App/Shop/Compare/viewIcon.png")} />
             <Compare Title={"Add to Compare"} Image={require("../../../Assets/Image/App/Shop/Compare/compareIcon.png")} />
           </View>
-          <Filter  Title={"Similar to 2822+ Iteams"} />
-        </View>
+          <Filter Title={"Similar to 2822+ Iteams"} />
 
-        <View style={{paddingRight:100}}>
-          <ProductName />
         </View>
-
+        <View
+          style={{
+            flexWrap:'wrap'
+          }}
+        >
+        <ProductName />
+        </View>
       </ScrollView>
     </View>
   )
@@ -47,7 +50,7 @@ const styles = StyleSheet.create({
   Container: {
     justifyContent: 'center',
     backgroundColor: 'white',
-
+    
   }
 })
 

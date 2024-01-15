@@ -4,7 +4,7 @@ import Star from '../../../CommonComponent/Star/Star'
 
 const SubProduct = ({ item }) => {
     return (
-        <View style={{ width: 191, paddingVertical: 10 }}>
+        <View style={{ width: 150, paddingVertical: 10, }}>
             <View style={styles.Row1}>
                 <Image borderRadius={5} style={{ width: 181, height: 150 }} source={item.Image} />
             </View>

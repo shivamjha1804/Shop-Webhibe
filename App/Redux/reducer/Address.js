@@ -66,8 +66,8 @@ export const AddressSlice = createSlice({
         .addCase(defaultAddress.fulfilled, (state, action) => {
             defaultAddressLoading = false;
             state.defaultAddress = action.payload;
-            console.log("ksjhkjsfhkdf:-", action.payload);
-            console.log("hfakkkkkkkkk:- ", state.defaultAddress);
+            // console.log("ksjhkjsfhkdf:-", action.payload);
+            // console.log("hfakkkkkkkkk:- ", state.defaultAddress);
         })
         .addCase(defaultAddress.rejected,(state, action) => {
             defaultAddressLoading = false

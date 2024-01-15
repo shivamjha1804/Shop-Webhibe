@@ -27,7 +27,7 @@ const Cart = () => {
         >
             <ScrollView style={{ backgroundColor: 'white', paddingHorizontal: 20 }}>
                 <Header2 ImageLeft={require("../../../Assets/Image/App/Cart/Header2/BackIcon.png")} Title={"Checkout"} />
-                <Label Image={require("../../../Assets/Image/App/Cart/Label/locationIcon.png")} Title={"Delivery Address"} />
+                <Label Images={require("../../../Assets/Image/App/Cart/Label/locationIcon.png")} Title={"Delivery Address"} />
                 
                 <AddressBox add={defaultAddress} />
                 

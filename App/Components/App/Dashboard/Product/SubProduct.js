@@ -43,6 +43,7 @@ const SubProduct = ({ item }) => {
                         DeactivateStarColor='#BBBBBB'
                         // containerStyle={{ flexDirection: 'row', marginLeft: 8 }}
                         defaultStar={4}
+                        key={""}
 
                     />
                 </View>

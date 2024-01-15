@@ -39,23 +39,56 @@ const Detail = [
         CrossedPrice: "₹2499",
         Percentage: "40%Off",
         Rating: "56890"
+    }, 
+    {
+        Image: require("../../../../Assets/Image/App/Shop/ProductName/person1.png"),
+        Title: "Women Printed Kurta",
+        Description: "Neque porro quisquam est qui dolorem ipsum quia",
+        Price: "₹1500",
+        CrossedPrice: "₹2499",
+        Percentage: "40%Off",
+        Rating: "56890"
     },
-    
+    {
+        Image: require("../../../../Assets/Image/App/Shop/ProductName/person1.png"),
+        Title: "Women Printed Kurta",
+        Description: "Neque porro quisquam est qui dolorem ipsum quia",
+        Price: "₹1500",
+        CrossedPrice: "₹2499",
+        Percentage: "40%Off",
+        Rating: "56890"
+    },
+    {
+        Image: require("../../../../Assets/Image/App/Shop/ProductName/person1.png"),
+        Title: "Women Printed Kurta",
+        Description: "Neque porro quisquam est qui dolorem ipsum quia",
+        Price: "₹1500",
+        CrossedPrice: "₹2499",
+        Percentage: "40%Off",
+        Rating: "56890"
+    },
+    {
+        Image: require("../../../../Assets/Image/App/Shop/ProductName/person1.png"),
+        Title: "Women Printed Kurta",
+        Description: "Neque porro quisquam est qui dolorem ipsum quia",
+        Price: "₹1500",
+        CrossedPrice: "₹2499",
+        Percentage: "40%Off",
+        Rating: "56890"
+    }, 
 ]
 
 
 const ProductName = () => {
     return (
         <View style={styles.Container}>
-            <FlatList
-                data={Detail} 
-                numColumns={2} 
-                renderItem={({item, index}) => {
+           {
+                Detail.map((item, index) => {
                     return (
                         <SubProduct  item={item} key={index} />
                     )
-                }}
-            />
+                })
+           }
         </View>
     )
 }
@@ -64,7 +97,9 @@ const styles = StyleSheet.create({
     Container:{
         backgroundColor: 'white',
         paddingHorizontal: 10,
-        flexWrap:'wrap',
+        flexDirection:'row',
+        flexWrap: 'wrap',
+        columnGap: 43
     }
 })
 

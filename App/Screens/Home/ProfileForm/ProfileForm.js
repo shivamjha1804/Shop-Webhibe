@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Text, TouchableOpacity } from 'react-native'
 import { View } from 'react-native'
 import { AppTextInput, Icon } from 'react-native-basic-elements'
 import Title from '../../../Components/App/Profile/Title/Title'
 import { useDispatch } from 'react-redux'
-import { putProfile } from '../../../Redux/Thunk/Profile'
+import { getProfile, putProfile } from '../../../Redux/Thunk/Profile'
 import NavigationService from '../../../Services/Navigation'
 import Header2 from '../../../Components/CommonComponent/Header2/Header2'
 
@@ -12,8 +12,12 @@ const ProfileForm = () => {
     const dispatch = useDispatch();
     const [name, getName] = useState("");
     const [email, getEmail] = useState("");
-    const [contact, getContact] = useState(0);
-    const [pincode, getPincode] = useState(0);
+    const [contact, getContact] = useState("");
+    const [pincode, getPincode] = useState("");
+
+    // useEffect(() => {
+    //     dispatch(getProfile())
+    // }, [dispatch])
 
     const updateProfile = () => {
         if (name === "") {
@@ -42,9 +46,9 @@ const ProfileForm = () => {
             contact : contact,
             postalcode : pincode
         }
-        console.log("Clicked");
+        // console.log("Clicked");
         dispatch(putProfile(data))
-        // NavigationService.navigate('Profile')
+        NavigationService.navigate('Profile')
     }
 
     return (
@@ -119,9 +123,9 @@ const ProfileForm = () => {
                     type: 'Ionicons'
                 }}
 
-                value={contact}
+                value={String(contact)}
                 onChangeText={(Text) => {
-                    getContact(Text)
+                    getContact(Number(Text))
                 }}
 
                 keyboardType='numeric'
@@ -145,16 +149,16 @@ const ProfileForm = () => {
                     name: 'location-pin',
                     type: 'Entypo'
                 }}
-
-                value={pincode}
+                
+                placeholder="Enter Your Pincode"
+                value={String(pincode)}
                 onChangeText={(Text) => {
-                    getPincode(Text)
+                    getPincode(Number(Text))
                 }}
 
                 keyboardType='numeric'
                 maxLength={6}
 
-                placeholder="Enter Your Pincode"
                 // secureTextEntry={true}
                 // rightAction={<Icon
                 //     name='eye'

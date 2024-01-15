@@ -6,8 +6,8 @@ import Profile from "./Profile";
 
 export default combineReducers({
    user: User,
+   Profile: Profile,
    Product: Product,
    Address: Address,
-   Profile: Profile
    // DefaultAddress: ,
 })

@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import { getAddress } from '../../../../Redux/Thunk/Address'
 
 const AddressBox = (props) => {
-    console.log("props add---->", props.add);
+    // console.log("props add---->", props.add);
     const dispatch = useDispatch()
 
     useEffect(() => {

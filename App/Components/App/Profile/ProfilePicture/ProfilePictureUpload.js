@@ -25,14 +25,14 @@ const ProfilePictureUpload = () => {
                 },
             );
             if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-                console.log('You can use the camera');
+                // console.log('You can use the camera');
                 ImagePicker.openCamera({
                     width: 300,
                     height: 400,
                     cropping: true,
                 }).then(image => {
                     setPathImage(image)
-                    console.log(image);
+                    // console.log(image);
                     uploadImage(image)
                 });
 
@@ -52,7 +52,7 @@ const ProfilePictureUpload = () => {
             cropping: true
         }).then(image => {
             setPathImage(image)
-            console.log(image);
+            // console.log(image);
             uploadImage(image)
 
         }).catch((err) => {
@@ -60,7 +60,7 @@ const ProfilePictureUpload = () => {
         })
     }
 
-    console.log("Image:-", pathImage);
+    // console.log("Image:-", pathImage);
 
     const uploadImage = (image) => {
         dispatch(updateProfile(image))

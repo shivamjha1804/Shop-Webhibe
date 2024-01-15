@@ -8,25 +8,23 @@ import ProductName from '../../../Components/App/TrendingProduct/ProductName/Pro
 const TrendingProduct = () => {
   return (
     <View style={styles.Container}>
-        <ScrollView >
+          <Header />
+          <Search />
         <View style={styles.subContainer}>
-          <Header/>
-          <Search/>
-          <Filter Title={"52,082+ Iteams"}/>
+          <Filter Title={"52,082+ Iteams"} />
         </View>
-        <ProductName/>
-        </ScrollView>
+        <ProductName />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  Container:{
-
-    backgroundColor:'white'
+  Container: {
+    paddingHorizontal: 10,
+    backgroundColor: 'white'
   },
-  subContainer:{
-    paddingHorizontal:10
+  subContainer: {
+    
   }
 })
 

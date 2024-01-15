@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { Dimensions, Image, PermissionsAndroid, Text, TouchableOpacity, View } from 'react-native'
+import { Dimensions, Image, PermissionsAndroid, TouchableOpacity, Text, View } from 'react-native'
 import NavigationService from '../../../../Services/Navigation'
 import { useDispatch, useSelector } from 'react-redux'
 import ReactNativeModal from 'react-native-modal'
 import { moderateScale } from '../../../../Constants/PixelRatio'
 import ImagePicker from 'react-native-image-crop-picker';
 import { updateProfile } from '../../../../Redux/Thunk/Profile'
+import { Icon } from 'react-native-basic-elements'
+// import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const {height, width} = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 const ProfilePicture = () => {
     const { profilePictureImage } = useSelector(state => state.Profile)
@@ -41,7 +43,7 @@ const ProfilePicture = () => {
                     cropping: true,
                 }).then(image => {
                     setPathImage(image)
-                    console.log(image);
+                    // console.log(image);
                     uploadImage(image)
                 });
 
@@ -61,7 +63,7 @@ const ProfilePicture = () => {
             cropping: true
         }).then(image => {
             setPathImage(image)
-            console.log(image);
+            // console.log(image);
             uploadImage(image)
 
         }).catch((err) => {
@@ -69,14 +71,14 @@ const ProfilePicture = () => {
         })
     }
 
-    console.log("Image:-", pathImage);
+    // console.log("Image:-", pathImage);
 
     const uploadImage = (image) => {
         dispatch(updateProfile(image))
     }
 
 
-    console.log("profilePictureImage", profilePictureImage);
+    // console.log("profilePictureImage", profilePictureImage);
     return (
         <View>
             <ReactNativeModal
@@ -85,7 +87,7 @@ const ProfilePicture = () => {
                 onBackdropPress={() => setModalVisible(false)}
                 style={{
                     backgroundColor: 'white',
-                    margin:0,
+                    margin: 0,
                     marginTop: 650,
                     borderTopRightRadius: 25,
                     borderTopLeftRadius: 25
@@ -93,19 +95,18 @@ const ProfilePicture = () => {
             >
                 <View
                     style={{
-                        flexDirection:'row',
+                        flexDirection: 'row',
                         justifyContent: 'space-around',
-                        marginHorizontal:25
+                        marginHorizontal: 25
                     }}
                 >
                     <TouchableOpacity
                         style={{
-                            backgroundColor:'grey',
-                            paddingVertical: 15,
-                            paddingHorizontal: 30,
-                            alignItems:'center',
+                            alignItems: 'center',
                             borderRadius: 15,
-                            elevation: 5
+                            borderWidth: 1,
+                            paddingVertical: 25,
+                            paddingHorizontal: 40
                         }}
 
                         onPress={() => {
@@ -113,6 +114,10 @@ const ProfilePicture = () => {
                             toggleModal()
                         }}
                     >
+                        <Icon
+                            name='camera'
+                            type='Entypo'
+                        />
                         <Text
                             style={{
                                 fontSize: 18,
@@ -125,24 +130,29 @@ const ProfilePicture = () => {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{
-                            backgroundColor:'grey',
-                            paddingVertical: 15,
-                            paddingHorizontal: 30,
-                            alignItems:'center',
+                            alignItems: 'center',
                             borderRadius: 15,
-                            elevation: 5
+                            borderWidth: 1,
+                            paddingVertical: 25,
+                            paddingHorizontal: 40
                         }}
 
                         onPress={() => {
                             imagePick();
                             toggleModal()
                         }}
-                    >
+                    >   
+
+                        <Icon
+                            name='image-album'
+                            type='MaterialCommunityIcon'
+                        />
+
                         <Text
                             style={{
                                 fontSize: 18,
                                 color: '#000',
-                                fontWeight: '800'       
+                                fontWeight: '800'
                             }}
                         >
                             Album
@@ -175,15 +185,21 @@ const ProfilePicture = () => {
                 }}
             /> */}
                 <TouchableOpacity
+                    style={{
+                        backgroundColor: 'white',
+                        borderRadius: 25,
+                        padding: 3,
+                        position: 'relative',
+                        bottom: 30,
+                        left: 40
+                    }}
                     onPress={() => {
                         toggleModal();
                     }}
                 >
-                    <View style={{ backgroundColor: 'white', borderRadius: 25, padding: 3, position: 'relative', bottom: 30, left: 40 }}>
-                        <View style={{ backgroundColor: '#4392F9', padding: 7, borderRadius: 15, }}>
-                            <Image source={require("../../../../Assets/Image/App/Profile/ProfilePicture/editIcon.png")} />
+                    <View style={{ backgroundColor: '#4392F9', padding: 7, borderRadius: 15, }}>
+                        <Image source={require("../../../../Assets/Image/App/Profile/ProfilePicture/editIcon.png")} />
 
-                        </View>
                     </View>
                 </TouchableOpacity>
             </View>

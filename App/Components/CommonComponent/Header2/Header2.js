@@ -3,28 +3,41 @@ import React from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import NavigationService from '../../../Services/Navigation';
 
-const Header2 = (props) => {
+const Header2 = ({ImageLeft, Title, ImageRight}) => {
+    // console.log("PROPS:----", ImageLeft);
+    // console.log("PROPS:----", Title);
+    // console.log("PROPS:----", ImageRight);
     return (
         <View style={styles.Container}>
             <TouchableOpacity onPress={() => {
                 NavigationService.back()
             }}>
                 <View>
-                    <Image source={props.ImageLeft} />
+                    <Image source={ImageLeft} />
                 </View>
             </TouchableOpacity>
             <View>
                 <Text style={styles.Text}>
-                    {props.Title}
+                    {Title}
                 </Text>
             </View>
-            <TouchableOpacity onPress={() => {
-                NavigationService.navigate("Cart")
-            }}>
-                <View>
-                    <Image source={props.ImageRight} />
-                </View>
-            </TouchableOpacity>
+            {
+                ImageRight === undefined
+                    ? <View>
+
+                     </View>
+                    : <TouchableOpacity onPress={() => {
+                        NavigationService.navigate("Cart")
+                    }}>
+                        <View>
+                            <Image source={
+                                ImageRight
+                            }
+                            />
+                        </View>
+                    </TouchableOpacity>
+            }
+
         </View>
     )
 }

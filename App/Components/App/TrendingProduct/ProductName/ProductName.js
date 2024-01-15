@@ -89,7 +89,6 @@ const ProductName = () => {
 const styles = StyleSheet.create({
     Container:{
         backgroundColor: 'white',
-        paddingHorizontal: 10,
         flexWrap:'wrap',
     }
 })

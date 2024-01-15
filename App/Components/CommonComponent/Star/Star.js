@@ -76,7 +76,7 @@ const Star = ({
     <View style={{ ...containerStyle }}>
       {AllStarData.map((item, index) => {
         return (
-          <Pressable style={{ ...itemStyle, }} onPress={() => changeIconStatus(item)}>
+          <Pressable disabled key={index} style={{ ...itemStyle, }} onPress={() => changeIconStatus(item)}>
             <Icon
               type={item.status == 'half' ? 'FontAwesome' : item.status == true ? ActiveStarType : DeactivateStarType}
               name={item.status == 'half' ? 'star-half' : item.status == true ? ActiveStarName : DeactivateStarName}
@@ -89,7 +89,6 @@ const Star = ({
             />
             {item.status == 'half' ?
               <Icon
-
                 type={DeactivateStarType}
                 name={DeactivateStarName}
                 size={starSize}
