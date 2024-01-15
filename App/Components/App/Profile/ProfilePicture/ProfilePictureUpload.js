@@ -7,38 +7,43 @@ import NavigationService from '../../../../Services/Navigation';
 import { useDispatch } from 'react-redux';
 import { updateProfile } from '../../../../Redux/Thunk/Profile';
 
-
-
-const requestCameraPermission = async () => {
-    try {
-        const granted = await PermissionsAndroid.request(
-            PermissionsAndroid.PERMISSIONS.CAMERA,
-            {
-                title: 'Shop App Wants To Take The Permission Of the Camera',
-                message:
-                    'For uploading the profile picture please grant the permission',
-                buttonNeutral: 'Ask Me Later',
-                buttonNegative: 'Cancel',
-                buttonPositive: 'OK',
-            },
-        );
-        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-            console.log('You can use the camera');
-        } else {
-            console.log('Camera permission denied');
-        }
-    } catch (err) {
-        console.warn(err);
-    }
-};
-
-
-
-
 const ProfilePictureUpload = () => {
     const dispatch = useDispatch();
-
     const [pathImage, setPathImage] = useState([]);
+
+    const requestCameraPermission = async () => {
+        try {
+            const granted = await PermissionsAndroid.request(
+                PermissionsAndroid.PERMISSIONS.CAMERA,
+                {
+                    title: 'Shop App Wants To Take The Permission Of the Camera',
+                    message:
+                        'For uploading the profile picture please grant the permission',
+                    buttonNeutral: 'Ask Me Later',
+                    buttonNegative: 'Cancel',
+                    buttonPositive: 'OK',
+                },
+            );
+            if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+                console.log('You can use the camera');
+                ImagePicker.openCamera({
+                    width: 300,
+                    height: 400,
+                    cropping: true,
+                }).then(image => {
+                    setPathImage(image)
+                    console.log(image);
+                    uploadImage(image)
+                });
+
+            } else {
+                console.log('Camera permission denied');
+            }
+        } catch (err) {
+            console.warn(err);
+        }
+    };
+
 
     const imagePick = () => {
         ImagePicker.openPicker({

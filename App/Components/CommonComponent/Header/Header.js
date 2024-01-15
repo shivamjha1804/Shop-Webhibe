@@ -1,12 +1,13 @@
 import React from 'react'
 import { Image, Text, ScrollView, StyleSheet, View, TouchableOpacity, StatusBar } from 'react-native'
 import NavigationService from '../../../Services/Navigation'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../../Redux/reducer/User';
 
 
 const Header = () => {
-    const dispatch = useDispatch(); 
+    const dispatch = useDispatch();
+    const { profilePictureImage } = useSelector(state => state.Profile)
     return (
         <View style={{ backgroundColor: 'white' }}>
             <StatusBar backgroundColor={'white'} />
@@ -26,7 +27,20 @@ const Header = () => {
                     NavigationService.navigate("Profile")
                 }}>
                     <View style={styles.Row3}>
-                        <Image source={require('../../../Assets/Image/CommonComponent/Header/userImage.png')} />
+                        <Image source={
+                            profilePictureImage == []
+                                ? require("../../../Assets/Image/App/Profile/ProfilePicture/ProfilePicture.png")
+                                : { uri: profilePictureImage }}
+
+                            style={{
+                                backgroundColor: "red",
+                                height: 40,
+                                width: 40,
+                                borderRadius: 20,
+                                borderWidth: 2,
+                                borderColor: 'blue'
+                            }}
+                        />
                     </View>
                 </TouchableOpacity>
             </View>
@@ -61,7 +75,6 @@ const styles = StyleSheet.create({
 
     Row3: {
         borderRadius: 50,
-
     }
 })
 

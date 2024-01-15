@@ -10,7 +10,6 @@ import { defaultAddress, getAddress } from '../../../Redux/Thunk/Address'
 import { AsyncStorage } from 'react-native';
 
 const Cart = () => {
-    const dispatch = useDispatch();
     const { defaultAddress } = useSelector(state => state.Address);
 
     // console.log("Default Address:- ", defaultAddress);

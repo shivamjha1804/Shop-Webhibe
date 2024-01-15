@@ -24,19 +24,18 @@ const Profile = () => {
     return (
         <View
             style={{
-                flex:1,
-                backgroundColor:'#fff',
-                paddingHorizontal:20
+                flex: 1,
+                backgroundColor: '#fff',
+                paddingHorizontal: 20
             }}
         >
-
             <Header2 ImageLeft={require("../../../Assets/Image/App/Shop/Header2/BackIcon.png")} Title={"Profile"} />
             <ProfilePicture />
             <View
                 style={{
                     flexDirection: 'row',
                     justifyContent: 'space-between',
-                    backgroundColor:'#fff'
+                    backgroundColor: '#fff'
                 }}
             >
                 <Title Title={"Personal Details"} />
@@ -81,6 +80,8 @@ const Profile = () => {
                 <Button Title={"Save"} /> */}
 
             </ScrollView>
+
+
         </View>
     )
 }
